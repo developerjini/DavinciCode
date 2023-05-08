@@ -1,0 +1,29 @@
+package team2.service;
+
+public class PlayerServiceImpl implements PlayerService{
+
+	@Override
+	public void order() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void adjust() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pass() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rank() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

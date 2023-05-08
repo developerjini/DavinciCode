@@ -1,0 +1,5 @@
+package team2.service;
+
+public class CardServiceImpl implements CardService{
+
+}

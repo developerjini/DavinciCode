@@ -1,0 +1,24 @@
+package team2.vo;
+
+/**
+ * 
+ * @author 김성진
+ * @history '23.02.07
+ * 내용
+ * 		1. 플레이어 수에 따른 순서정하기
+ * 		2. 카드 뒤집기 기능 구현
+ * 			- 어떤 플레이어가 상대방의 카드를 골라 맞추면 카드오픈
+ * 			- 못 맞추면 그대로 진행
+ * 
+ *
+ */
+
+public class Board {
+	   public static void main(String[] args) {
+		   System.out.println("강태수");
+		   System.out.println("김설하");
+			System.out.println("커밋");
+			System.out.println("1");
+			System.out.println("김성진");
+	}
+}

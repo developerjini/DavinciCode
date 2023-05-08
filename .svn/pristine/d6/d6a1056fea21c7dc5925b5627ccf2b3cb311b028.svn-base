@@ -1,0 +1,31 @@
+package team2.service;
+
+/**
+*
+* @author 김성진
+* @history '23.02.07
+* 내용
+* 		1. adjust() : 카드 맞추기
+* 		
+*/
+
+
+import team2.vo.Player;
+import static team2.Utils.*;
+
+public class PlayerServiceImpl implements PlayerService{
+    BoardServiceImpl board = new BoardServiceImpl();
+    // 맞추기
+    @Override
+    public void adjust(String name, int index, int value) {
+        Player p = board.findBy(name);
+        if (p.getName().equals(name)) {
+            if (p.getCard().get(index).getValue().equals(value)) {
+                System.out.println("맞았습니다!" + p.getName() + "의 " + (index+1) + "번째 카드는 " + p.getCard().get(index) + "였습니다.");
+            } else {
+                System.out.println("틀렸습니다.");
+            }
+        }
+    }
+
+}

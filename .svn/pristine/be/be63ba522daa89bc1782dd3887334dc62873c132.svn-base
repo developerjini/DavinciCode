@@ -1,0 +1,32 @@
+package mini;
+import java.util.ArrayList;
+import java.util.Collections;
+
+//카드를 랜덤으로 섞어주는 클래스
+public class Deck {
+	//Card 타입의 ArrayList 객체를 생성하고 배열에 카드모양와 숫자생성
+	ArrayList<Card> deck = new ArrayList<Card>();
+//	String[] suit = {"CLUB", "DIAMOND", "HEART", "SPACE"};
+	String[] color = {"검정", "흰색"};
+	String[] number = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J"};
+	
+	public Deck() { //전체카드(경우의 수) 전체 deck ArrayList에 저장
+		for(int i = 0; i < color.length; i++){
+			for(int j = 0; j < number.length; j++)
+				deck.add(new Card(color[i],number[j]));
+		}
+	}
+    
+	public void sort() {
+		//Collections.shuffler : 저장된 데이터들을 랜덤으로 출력한다.
+		//deck ArrayList에 저장된 데이터들 중에서 랜덤으로 출력
+		Collections.shuffle(deck);
+	}
+    
+	public Card deal() { 
+		return deck.remove(0);
+	} //카드게임에서 카드 한 장 나눠줄 때를 구현
+	//remove() : 리스트에서 해당 인덱스의 값을 제거하고, 그 값을 반환
+	//즉, deal() 메소드는 deck()메소드에서 52개의 Card객체를
+	//만들어 준 것중에 첫번째 요소를 제거하고 그 제거한 요소를 반환한다			
+}

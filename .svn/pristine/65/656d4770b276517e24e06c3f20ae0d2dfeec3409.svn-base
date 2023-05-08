@@ -1,0 +1,38 @@
+//package testkts;
+
+//import java.util.ArrayList;
+//import java.util.Collections;
+//
+//public class Ddeck {
+//	
+//	ArrayList<Card> deck = new ArrayList<Card>();
+//	String[] suit = {"white", "black"}; //화이트 블랙
+//	String[] number = {"0","1","2","3","4","5","6","7","8","9","10","11","-"};
+//	//카드 0~11 조커 - 표기  총 12장
+//	
+//	 
+//	 
+//	public Deck() {
+//		for (int i = 0; i < suit.length; i++) {//흰색 검은색
+//			for (int j = 0; j < number.length; j++) //number 길이
+//				deck.add(new Card(suit[i],number[j]));
+//			}
+//		/**
+//		 * @Deck() 안에 흰색 검은색 2개 만들고
+//		 * 넘버 길이로 카드 조커 포함 13장
+//		 * 총 카드 26장이 되는 식으로 만들었는데
+//		 * 
+//		 * 
+//		 * 	
+//		 */
+//			
+//			
+//		}
+//	public void shuffle() {
+//		Collections.shuffle(deck);//자동 랜덤 섞기 기능사용
+//	}
+//	public static void main(String[] args) {
+//		Deck deck = new Deck();
+//		deck.shuffle();
+//	}// 작동이 안되서 올려둠
+//	}

@@ -1,0 +1,50 @@
+package test1;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Test2 {
+	public static void main(String[] args) {
+		List<Test1>cardList = new ArrayList<>();
+		Test1 card1 = new Test1(1, "B");
+		Test1 card2 = new Test1(2, "B");
+		Test1 card3 = new Test1(3, "B");
+		Test1 card4 = new Test1(4, "B");
+		Test1 card5 = new Test1(5, "B");
+
+		cardList.add(card1);
+		cardList.add(card2);
+		cardList.add(card3);
+		cardList.add(card4);
+		cardList.add(card5);
+
+		List<Test1> copiedCardList = new ArrayList<>(cardList);
+		System.out.println("cardlist :"+ getCardListStr(cardList));
+		System.out.println("copiedCardlist :"+ getCardListStr(copiedCardList));
+		
+		System.out.println("뒤집기");
+		
+		copiedCardList.get(2).flip();
+		copiedCardList.get(4).flip();
+		System.out.println("cardlist :"+ getCardListStr(cardList));
+		System.out.println("copiedCardlist :"+ getCardListStr(copiedCardList));
+		
+		List<Test1>copiCardList2 = new ArrayList<>(cardList.size());
+		Collections.copy(copiCardList2, cardList);
+	
+	}
+
+		
+		
+//	}
+
+
+	public static String getCardListStr(List<Test1>cardList) {
+		String str="";
+		for(Test1 card : cardList) {
+			str += card.getCard()+" ";
+		}
+		return str;
+	}
+}

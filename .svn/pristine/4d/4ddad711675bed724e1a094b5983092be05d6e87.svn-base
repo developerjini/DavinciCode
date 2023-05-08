@@ -1,0 +1,103 @@
+package team2.service;
+
+/**
+ *
+ * @author 김성진
+ * @history '23.02.07
+ * 내용
+ * 		1. gamestart() : 게임플레이어 선정(2인, 4인)
+ * 		2. gameend() : 게임 종료
+ * 		3. order() : 플레이어에 대한 랜덤값에 의한 순서 정하기
+ *		4. rank() : 게임 종료에 따른 플레이어 순위 표시
+ *
+ */
+
+import team2.vo.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static team2.Utils.*;
+
+public class BoardServiceImpl implements BoardService{
+    private int playerNum;
+    ArrayList<Integer> orderNum = new ArrayList<>();
+    static ArrayList<Player> players = new ArrayList<>();
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public int getPlayerNum() {
+        return playerNum;
+    }
+
+    public void setPlayerNum(int players) {
+        this.playerNum = players;
+    }
+
+    public void playerRegister() {
+        String name = nextLine("플레이어 이름을 입력하세요 > ");
+        Player player = new Player(name);
+        players.add(player);
+    }
+
+    public Player findBy(String name) {
+        Player player = null;
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getName().equals(name)) {
+                player = players.get(i);
+                break;
+            }
+        }
+        return player;
+    }
+
+    @Override
+    public void gameStart() {
+        int players = nextInt("몇명이 플레이하겠습니까? 1 : 2인 | 2 : 4인");
+        setPlayerNum(players * 2);
+
+        switch (players) {
+            case 1 :
+                System.out.println("2인 게임시작");
+                break;
+            case 2:
+                System.out.println("4인 게임시작");
+                break;
+            default:
+                System.out.println("범위 내의 숫자를 입력하세요(1 ~ 2)");
+        }
+    }
+
+    @Override
+    public void gameEnd() {
+        System.out.println("게임을 종료합니다");
+        System.exit(0);
+    }
+
+    @Override
+    public String order(int players) {
+        System.out.println("주사위를 굴려 플레이어 순서를 정합니다");
+        orderNum = new ArrayList<>();
+
+        return "player" + (orderNum.indexOf(Collections.max(orderNum))+ 1) + "부터 시작합니다!";
+    }
+
+    @Override
+    public void rank() {
+
+    }
+
+    public static void main(String[] args) {
+        BoardServiceImpl board = new BoardServiceImpl();
+//        board.gameStart();
+        board.playerRegister();
+        board.playerRegister();
+        System.out.println(board.getPlayers());
+        String name = nextLine("이름 입력 : ");
+        System.out.println(board.findBy(name));
+    }
+}

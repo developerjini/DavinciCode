@@ -1,0 +1,44 @@
+package team2;
+import student.StudentService;
+/**
+ * @author 김성진
+ * @histroy '23.2.6
+ * @내용
+ * 		1. 시작화면 구성
+ * 		2. 게임 시작과 종료 외에는 사용자 입력값 x
+ * 		3. 
+ */
+import team2.Utils;
+
+//게임시작 화면 출력
+public class Main {
+
+	
+	public static void main(String[] args) {
+			System.out.println("\r\n"
+					+ "______                _               _      _   _____             _       \r\n"
+					+ "|  _  \\              (_)             | |    (_) /  __ \\           | |      \r\n"
+					+ "| | | |  __ _ __   __ _  _ __    ___ | |__   _  | /  \\/  ___    __| |  ___ \r\n"
+					+ "| | | | / _` |\\ \\ / /| || '_ \\  / __|| '_ \\ | | | |     / _ \\  / _` | / _ \\\r\n"
+					+ "| |/ / | (_| | \\ V / | || | | || (__ | | | || | | \\__/\\| (_) || (_| ||  __/\r\n"
+					+ "|___/   \\__,_|  \\_/  |_||_| |_| \\___||_| |_||_|  \\____/ \\___/  \\__,_| \\___|\r\n"
+					+ "                                                                           \r\n"
+					+ "                                                                           \r\n"
+					+ "");
+
+			System.out.println("다빈치 코드 게임에 오신것을 환영합니다.");
+			System.out.println("게임을 시작하시겠습니까?");
+			int input = Utils.nextInt("1. 게임시작  2. 게임종료");
+			switch(input) {
+			case 1:  // 게임시작
+				break;
+			case 2: // 게임종료
+				System.out.println("\n\n\t게임을 종료합니다.");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("범위 내의 숫자를 입력하세요(1~2)");
+			break;
+			}
+		}
+}

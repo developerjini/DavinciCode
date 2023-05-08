@@ -1,0 +1,41 @@
+package Test00;
+
+
+import java.util.Arrays;
+
+public class test01 {
+	public static void main(String[] args) {
+        String[] Users = {
+            "user1", "user2"
+        };
+
+        
+        String[] Card1 = {
+        		"화0", "화1", "화2", "화3", "화4", "화5", "화6", "화7", "화8", "화9", "화10",
+            "화11", "bonus","블0", "블1", "블2", "블3", "블4", "블5", "블6", "블7", "블8", "블9", "블10",
+            "블11", "bonus"
+        };
+        Arrays.sort(Users);
+        int n = Users.length * Card1.length;
+        String[] deck = new String[n];
+        for (int i = 0; i < Card1.length; i++) {
+            for (int j = 0; j < Users.length; j++) {
+                deck[Users.length*i + j] = 
+                		Users[j] + " 가 고른 카드는 " + Card1[i];
+            }
+        }
+
+        // 셔플
+        for (int i = 0 ; i < n ; i++) {
+            int r = i + (int) (Math.random() * (n-i));
+            String temp = deck[r];
+            deck[r] = deck[i];
+            deck[i] = temp;
+        }
+
+        // 뒤섞인 것 출력
+        for (int i = 0 ; i < n ; i++) {
+            System.out.println(deck[i]);
+        }
+	}
+}

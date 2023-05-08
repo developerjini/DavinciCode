@@ -1,0 +1,66 @@
+package mini;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class AddrTest {
+	public static void main(String[] args) {
+		// List >> Array
+		// Array >> List
+		
+		List<Addr> addrs = new ArrayList<Addr>();
+		addrs.add(new Addr(3, "김길동"));
+		addrs.add(new Addr(1, "김길동"));
+		addrs.add(new Addr(2, "이길동"));
+		addrs.add(new Addr(2, "가길동"));
+		addrs.add(new Addr(2, "나길동"));
+		addrs.add(new Addr(2, "다길동"));
+		addrs.add(new Addr(2, "마길동"));
+		addrs.add(new Addr(2, "라길동"));
+		
+		addrs.sort(new Comparator<Addr>() {
+
+			@Override
+//			public int compare(Addr o1, Addr o2) {
+//				// TODO Auto-generated method stub
+//				if(o1.no == o2.no) {
+//					return o1.name.compareTo(o2.name);
+//				}
+//				return o1.no - o2.no;
+//				}			
+//			});
+		public int compare(Addr o1, Addr o2) {
+			// TODO Auto-generated method stub
+			if(o1.name.compareTo(o2.name) == 0) {
+				return o1.no - o2.no;
+			}
+			return o1.name.compareTo(o2.name);
+			}			
+		});
+		
+		System.out.println(addrs);
+	
+		Collections.sort(addrs);
+		Addr[] addrs2 = new Addr[addrs.size()];
+		addrs.toArray(addrs2);
+		Arrays.sort(addrs2, new Comparator<Addr>() {
+
+			@Override
+			public int compare(Addr o1, Addr o2) {
+				// TODO Auto-generated method stub
+				return o1.name.compareTo(o2.name);
+			}
+		});
+		
+		// 람다식
+		// 위 코드가 간단해졌을 때
+		Arrays.sort(addrs2, (o1,o2) -> o1.name.compareTo(o2.name));
+		Arrays.sort(addrs2);
+		System.out.println(Arrays.toString(addrs2));
+		
+	}
+	
+}

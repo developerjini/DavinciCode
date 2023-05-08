@@ -1,0 +1,27 @@
+package team2.service;
+
+/**
+ *
+ * @author 김성진
+ * @history '23.02.07
+ * 내용
+ * 		1. 카드 불출
+ * 		2. 카드 정렬
+ * 			- 다빈치코드게임 규칙상 플레이어마다 카드가 뽑히면 오름차순으로 정렬필요
+ * 		3. 랭킹 표현
+ * 			- 게임 종료에 따른 플레이어들의 순위 발표
+ *
+ *
+ *
+ */
+
+public interface BoardService {
+    // 게임시작
+    void gmaeStart();
+    // 게임종료
+    void gameEnd();
+    // 순서정하기
+    String order(int players);
+    // 랭킹
+    void rank();
+}

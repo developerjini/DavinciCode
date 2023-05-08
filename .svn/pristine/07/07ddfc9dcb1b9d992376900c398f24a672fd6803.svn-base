@@ -1,0 +1,59 @@
+package team2.service;
+
+/**
+ *
+ * @author 김성진
+ * @history '23.02.07
+ * 내용
+ * 		1. adjust() : 카드 맞추기
+ *
+ */
+
+import team2.vo.Player;
+
+import static team2.Utils.nextInt;
+
+public class PlayerServiceImpl implements PlayerService{
+    BoardServiceImpl board = new BoardServiceImpl();
+
+    /**
+     * @author 김설하
+     * @history '23.02.09'
+     * 내용
+     * adjust : 카드를 맞췄을 시 flip
+     */
+    // 맞추기
+
+    public boolean adjust() {
+        BoardServiceImpl board = new BoardServiceImpl();
+
+        System.out.println("누구의 카드를 맞추시겠습니까?");
+        int pick = nextInt("");
+        String name = board.getPlayers().get(pick - 1).getName();
+        int index = nextInt("몇 번째 카드 숫자를 맞추시겠습니까?");
+        int value = nextInt("카드의 숫자는?");
+        return answerCheck(name, index -1, value);
+    }
+
+    public boolean answerCheck(String name, int index, int value) {
+        Player p = board.findBy(name);
+        if (p.getCard().get(index).getValue().equals(value)) {
+            System.out.println("맞았습니다! " + p.getName() + " 의 " + (index + 1) + "번째 카드는 " + p.getCard().get(index) + " 였습니다.");
+            p.getCard().get(index).flip();
+            
+            switch (nextInt("더 맞추시겠습니까?  1. 진행  2. 턴 종료")) {
+            case 1 :
+                return true;
+            case 2:
+                return false;
+            default:
+                System.out.println("범위 안의 숫자를 입력해주세요");
+            }
+            
+            return true;
+        } else {
+            System.out.println("틀렸습니다.");
+            return false;
+        }
+    }
+}

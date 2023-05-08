@@ -1,0 +1,23 @@
+package team2.service;
+
+public class CardServiceImpl implements CardService{
+
+	@Override
+	public void handOut() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sort() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void open() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

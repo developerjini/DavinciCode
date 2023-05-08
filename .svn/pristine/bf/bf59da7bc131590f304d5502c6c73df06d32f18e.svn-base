@@ -1,0 +1,40 @@
+package team2.service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import team2.vo.Card;
+
+
+public class CardServiceImpl implements CardService{
+	Player<String> card = new Card<>();
+	private List<Card> sortedCard;	
+	{
+		// 초기화 블럭을 이용한 더미 데이터 사용
+		Card.add(new Card()));
+		Card.add(new Card()));
+		Card.add(new Card()));
+		
+	}
+	
+	
+	@Override
+	public void handOut() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sort() {
+			sortedCard = new ArrayList<>(card);
+			Collections.sort(sortedCard);
+			}
+
+	@Override
+	public void open() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

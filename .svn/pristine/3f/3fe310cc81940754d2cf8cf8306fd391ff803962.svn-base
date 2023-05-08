@@ -1,0 +1,17 @@
+package team2.service;
+
+public class BoardServiceImpl implements BoardService{
+
+	@Override
+	public void gmaeStart() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void gameEnd() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

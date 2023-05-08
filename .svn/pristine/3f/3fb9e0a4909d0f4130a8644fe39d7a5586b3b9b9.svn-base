@@ -1,0 +1,36 @@
+package test1;
+
+public class Test1 {
+	private int front;
+	private String back;
+	private boolean isFront;
+	
+	public Test1(int front, String back) {
+		this.front = front;
+		this.back = back;
+		this.isFront = true;
+	}
+public String getCard() {
+	if(isFront) {
+		return front + "";
+	}else{
+		return back;
+	}
+}
+	
+
+public void flip() {
+	this.isFront = !isFront;
+	
+}
+public int getFront() {
+	return front;
+}
+public String getBack() {
+	return back;
+	
+}
+public boolean isFront() {
+	return isFront;
+}
+}

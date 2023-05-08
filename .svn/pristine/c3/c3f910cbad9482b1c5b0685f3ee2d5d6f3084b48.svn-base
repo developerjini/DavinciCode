@@ -1,0 +1,69 @@
+package Test00;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class test02 {
+	public static void main(String[] args) {
+		
+		// 사용자 입력
+		Scanner scan = new Scanner(System.in);
+		int inputNumber = 0;
+		int count = 0;
+		String yesOrNo = null;
+		
+		
+		Random random = new Random();
+		int randomNumber = random.nextInt(12);	
+			
+			while(true) {
+				
+				int high = 12;
+				int low = 0;
+				
+				System.out.println("카드 번호를 입력하세요( 입력 가능 번호 0 ~ 11 )");
+				
+				// 홀수 짝수로 차례 변경
+				// 상대방 번호보다 작거나 크면 틀렸다고 알려주기
+				count ++;
+				int result = (count % 2);
+				if(result == 1) {
+					System.out.println("사용자 차례입니다.");	
+				} else {
+					System.out.println("시스템 차례입니다.");
+				}
+				inputNumber = scan.nextInt();
+				if(inputNumber < randomNumber) {
+					System.out.println("틀렸습니다");
+					low = inputNumber;
+				}
+				else if(inputNumber < randomNumber) {
+					System.out.println("틀렸습니다");
+					high = inputNumber;
+				}
+				else
+					break;
+			}
+			
+			//상대방 번호를 맞췄으면 맞췄다고 알려주고 패스할 것인지 묻도록.
+			if(inputNumber==randomNumber) {
+				System.out.println("맞았습니다. 상대방 번호는 " + randomNumber +"상대방 카드를 오픈합니다.");
+				System.out.println("패스하시겠습니까(y, n)");
+				yesOrNo = scan.next();
+				char tmp = yesOrNo.charAt(0);
+				
+				if(tmp=='y'|| tmp=='Y') {
+					count=0;
+					scan.nextLine();
+					
+				}else if (tmp=='n'|| tmp =='N')
+					System.exit(0);
+				
+				else {
+					count=0;
+					scan.nextLine();
+					System.out.println("y,n만 입력가능합니다.");
+			}
+		}
+	}
+}

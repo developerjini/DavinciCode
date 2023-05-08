@@ -1,0 +1,117 @@
+package team2;
+/**
+ * @author 김성진
+ * @histroy '23.2.6
+ * @내용
+ * 		1. 시작화면
+ * 		2. 게임인원 설정(2인 vs 4인)
+ * 		3. 게임인원에 대한 이름 설정
+ * 		4. 랜덤 값에 의한 플레이어 순서 선정
+ * 		5. 플레이 순서에 따른 카드 뽑기 진행
+ * 			(2인 : 4장, 4인 : 3장)
+ * 		6. 카드 맞추기에 따른 추가 진행사항(패스, 더 맞추기)
+ * 		7. 맞춘 카드 오픈 저장
+ * 		8. 다 맞춰진 플레이어대로 게임 종료
+ * 		9. 게임 전체 종료에 따른 랭킹 순위 표시(마지막 플레이어가 1등)
+ */
+
+import team2.Utils;
+import team2.service.BoardServiceImpl;
+import team2.service.Deck;
+import team2.service.PlayerServiceImpl;
+import team2.vo.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static team2.Utils.*;
+
+//게임시작 화면 출력
+public class Main {
+		public static void main(String[] args) {
+			BoardServiceImpl board = new BoardServiceImpl();
+			PlayerServiceImpl play = new PlayerServiceImpl();
+			Deck deck = new Deck();
+
+			System.out.println("\r\n"
+					+ "______                _               _      _   _____             _       \r\n"
+					+ "|  _  \\              (_)             | |    (_) /  __ \\           | |      \r\n"
+					+ "| | | |  __ _ __   __ _  _ __    ___ | |__   _  | /  \\/  ___    __| |  ___ \r\n"
+					+ "| | | | / _` |\\ \\ / /| || '_ \\  / __|| '_ \\ | | | |     / _ \\  / _` | / _ \\\r\n"
+					+ "| |/ / | (_| | \\ V / | || | | || (__ | | | || | | \\__/\\| (_) || (_| ||  __/\r\n"
+					+ "|___/   \\__,_|  \\_/  |_||_| |_| \\___||_| |_||_|  \\____/ \\___/  \\__,_| \\___|\r\n"
+					+ "                                                                      \r\n"
+					+ "");
+
+			System.out.println("다빈치 코드 게임에 오신것을 환영합니다.");
+			System.out.println("게임을 시작하시겠습니까?");
+
+			int input = Utils.nextInt("1. 게임시작  2. 게임종료");
+			switch(input) {
+			case 1:  // 게임시작
+				board.gameStart();
+				break;
+			case 2: // 게임종료
+				board.gameEnd();
+				break;
+			default:
+				System.out.println("범위 내의 숫자를 입력하세요(1 ~ 2)");
+				break;
+			}
+
+			if (board.getPlayerNum() == 2) {
+				board.playerRegister();
+				board.playerRegister();
+
+			} else {
+				board.playerRegister();
+				board.playerRegister();
+				board.playerRegister();
+				board.playerRegister();
+			}
+
+			for (int i = 0; i < board.getPlayerNum(); i++) {
+				board.getPlayers().get(i).order = ((int)(Math.random() * Integer.MAX_VALUE));
+				
+			}
+
+			Collections.sort(board.getPlayers());
+			for (int i = 0; i < board.getPlayerNum(); i++) {
+				System.out.println((i+1) + "번 순서는 "+ board.getPlayers().get(i).getName() + "입니다.");
+				
+				
+			}
+
+			int turn = 0;
+			for (int i = 0;; i++) {
+				Player p = board.getPlayers().get(i % board.getPlayerNum());
+//				Player p = playerOrder[i % board.getPlayerNum()];
+				System.out.println(p.getName() + "님의 차례입니다. 엔터키를 입력하세요");
+				nextLine("");
+
+				if (turn / board.getPlayerNum() == 0) {
+					System.out.println("시작패를 뽑아주세요");
+
+					int startCard = 0;
+					if (board.getPlayerNum() == 2) {
+						startCard = 4;
+					} else {
+						startCard = 3;
+					}
+
+					for (int j = 0; j < startCard; j++) {
+						p.getCard(deck.handOut());
+					}
+					p.showCards();
+				} else {
+					String name = nextLine("누구의 카드를 맞추시겠습니까?");
+					int index = nextInt("몇 번째 카드 숫자를 맞추시겠습니까?");
+					int value = nextInt("카드의 숫자는?");
+					play.adjust(name, index - 1, value);
+				}
+
+				turn++;
+			}
+		}
+}

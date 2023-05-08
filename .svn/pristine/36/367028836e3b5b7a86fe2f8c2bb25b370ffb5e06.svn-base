@@ -1,0 +1,72 @@
+package team2.service;
+
+
+/**
+*
+* @author 김성진
+* @history '23.02.07
+* 내용
+* 		1. 카드 : 검정, 흰색 카드에 따른 조커(-1), 0~12씩 생성
+* 		2. handout() : 카드 뽑기 (2인 : 4장, 4인 : 3장씩) 
+* 		3. sort() : 뽑은 카드에 대한 정렬(검정이 흰색보다 우선, 숫자에 대한 오름차순, 조커는 플레이어 마음)
+*
+*/
+
+
+import team2.vo.Card;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static team2.Utils.nextInt;
+
+public class Deck {
+    private ArrayList<Card> gaveOut = new ArrayList<>();
+    private ArrayList<Integer> whiteValues = new ArrayList<>(List.of(-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
+    private ArrayList<Integer> blackValues = new ArrayList<>(List.of(-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
+
+    // 카드 나눠주기 (한장)
+    public Card handOut() {
+        int num = 0;
+        Card card = new Card();
+
+        System.out.println("카드 색을 골라주세요");
+        int c = nextInt("0 : 검정색  1 : 흰색");
+
+        if (c == 0) {
+            try {
+                num = (int) (Math.random() * blackValues.size());
+                card = new Card("검정색", blackValues.get(num));
+                blackValues.remove(num);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("검정색 카드가 없습니다. 다른 카드를 골라주세요!");
+            }
+        } else {
+            try {
+                num = (int) (Math.random() * whiteValues.size());
+                card = new Card("흰색", whiteValues.get(num));
+                whiteValues.remove(num);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("흰색 카드가 없습니다. 다른 카드를 골라주세요!");
+            }
+        }
+
+        gaveOut.add(card);
+        System.out.println(gaveOut);
+        return card;
+    }
+
+    // 카드 정렬
+    public void sort() {
+
+    }
+
+    public static void main(String[] args) {
+        Deck d = new Deck();
+        while (true) {
+            System.out.println(d.handOut());
+        }
+    }
+}

@@ -1,0 +1,74 @@
+package team2.service;
+
+/**
+ * 플레이어 서비스에 대한 메서드 작성
+ * 
+ * 1. 카드 맞추기 기능
+ * 2. 카드 맞춘 후 추가로 맞출 것인지, 플레이어 턴을 넘길것인지에 대한 기능
+ * 3. 카드 못맞춘 경우 플레이어가 넘어가는 기능
+ * 
+ * @param
+ *   1. String name
+ *   2. int index
+ *   3. int value
+ * @return 
+ *   1. 플레이어가 입력한 플레이어이름
+ *   2. 플레이어가 선정한 랜덤값의 카드 덱의 주소값
+ *   3. 해당 플레이어 덱 안에 있는 가지고 있는 카드값
+ * 
+ * @author 김성진
+ * @since 1.0
+ * @history '23.02.07
+ * 
+ */
+
+import team2.vo.Player;
+
+import static team2.Utils.nextInt;
+
+public class PlayerServiceImpl implements PlayerService{
+    BoardServiceImpl board = new BoardServiceImpl();
+
+    /**
+     * 
+     * 카드를 맞췄을 시에 대한 flip 기능 생성
+     * @author 김설하
+     * @since 1.1
+
+     */
+    
+    // 맞추기
+    public boolean adjust() {
+        BoardServiceImpl board = new BoardServiceImpl();
+
+        System.out.println("누구의 카드를 맞추시겠습니까?");
+        int pick = nextInt("");
+        String name = board.getPlayers().get(pick - 1).getName();
+        int index = nextInt("몇 번째 카드 숫자를 맞추시겠습니까?");
+        int value = nextInt("카드의 숫자는?");
+        return answerCheck(name, index -1, value);
+    }
+
+    
+    public boolean answerCheck(String name, int index, int value) {
+        Player p = board.findBy(name);
+        if (p.getCard().get(index).getValue().equals(value)) {
+            System.out.println("맞았습니다! " + p.getName() + " 의 " + (index + 1) + "번째 카드는 " + p.getCard().get(index) + " 였습니다.");
+            p.getCard().get(index).flip();
+            
+            switch (nextInt("더 맞추시겠습니까?  1. 진행  2. 턴 종료")) {
+            case 1 :
+                return true;
+            case 2:
+                return false;
+            default:
+                System.out.println("범위 안의 숫자를 입력해주세요");
+            }
+            
+            return true;
+        } else {
+            System.out.println("틀렸습니다.");
+            return false;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+package team2.vo;
+
+import team2.service.Deck;
+
+import java.util.ArrayList;
+
+public class Player implements Comparable<Player>{
+    private String name;
+    public int order;
+    private ArrayList<Card> card = new ArrayList<Card>();
+    Deck deck = new Deck();
+
+    public Player() {
+
+    }
+
+    public Player(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Card> getCard() {
+        return deck.sort(card);
+    }
+
+    public void setCard(ArrayList<Card> card) {
+        this.card = card;
+    }
+
+    public void getCard(Card card) {
+        this.card.add(card);
+    }
+
+    @Override
+    public String toString() {
+        return "Player [name=" + name + "]";
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return o.order- order;
+    }
+}

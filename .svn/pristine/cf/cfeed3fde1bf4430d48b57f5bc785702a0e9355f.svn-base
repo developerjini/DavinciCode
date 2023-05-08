@@ -1,0 +1,22 @@
+package mini;
+
+public class Addr implements Comparable<Addr>{
+	int no;
+	String name;
+	public Addr(int no, String name) {
+		this.no = no;
+		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Addr [no=" + no + ", name=" + name + "]";
+	}
+	@Override
+	public int compareTo(Addr o) {
+		// TODO Auto-generated method stub
+		return no-o.no;
+	}
+	
+	
+	
+}

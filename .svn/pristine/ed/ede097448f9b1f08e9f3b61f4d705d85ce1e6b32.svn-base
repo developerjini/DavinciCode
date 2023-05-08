@@ -1,0 +1,39 @@
+package marble;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MarbleEx {
+
+	static Scanner scanner = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+
+		Map map = new Map();
+
+		Player[] players = new Player[4];
+		players[0] = new Player("일론머스크");
+		players[1] = new Player("빌게이츠");
+		players[2] = new Player("김성진");
+		players[3] = new Player("김설하");
+		
+		// 선 정하기
+		for(int i = 0; i < players.length; i++) {
+			players[i].order = (int)(Math.random() * Integer.MAX_VALUE);
+		}
+		Arrays.sort(players);
+		System.out.println("선은" + players[0].name + " 입니다.");
+		
+		
+		
+		for(int i = 0 ;; i++) {
+			Player p = players[i%2];
+			System.out.println(p.name + "님의 차례입니다. 엔터키를 입력하세요");
+			scanner.nextLine();
+			p.idx = (p.idx + p.roll()) % 32;
+			System.out.println("현재 위치는 " + map.tiles[p.idx].name + "입니다.");
+			
+		}
+		
+	}
+}

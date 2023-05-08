@@ -1,0 +1,18 @@
+package team2.service;
+
+import team2.vo.Player;
+import static team2.Utils.*;
+
+public class PlayerServiceImpl implements PlayerService{
+
+    // 맞추기
+    @Override
+    public void adjust(int index, int value) {
+        Player p = new Player();
+        if (p.getCard().get(index).getValue() == value) {
+            System.out.println("맞았습니다!" + p.getName() + "의 " + index + "번째 카드는 " + p.getCard().get(index) + "였습니다.");
+        } else {
+            System.out.println("틀렸습니다.");
+        }
+    }
+}

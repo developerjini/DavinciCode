@@ -1,0 +1,12 @@
+package team2.service;
+
+public interface CardService {
+	// 카드불출
+	void handOut();
+	
+	// 카드정렬
+	void sort();
+	
+	// 카드공개
+	void open(); 
+}

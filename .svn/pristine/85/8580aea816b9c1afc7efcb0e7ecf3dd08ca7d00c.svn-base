@@ -1,0 +1,74 @@
+package team2.service;
+
+import team2.vo.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static team2.Utils.nextInt;
+
+public class BoardServiceImpl implements BoardService{
+    private int players;
+    ArrayList<Integer> orderNum = new ArrayList<>();
+    List<Player> playerOrder = new ArrayList<>();
+
+    public int getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(int players) {
+        this.players = players;
+    }
+
+    public ArrayList<Integer> getOrderNum() {
+        return orderNum;
+    }
+
+    @Override
+    public void gmaeStart() {
+        int players = nextInt("몇명이 플레이하겠습니까? 1 : 2인 | 2 : 4인");
+        setPlayers(players * 2);
+
+        switch (players) {
+            case 1 :
+                System.out.println("2인 게임시작");
+                break;
+            case 2:
+                System.out.println("4인 게임시작");
+                break;
+            default:
+                System.out.println("범위 내의 숫자를 입력하세요(1 ~ 2)");
+        }
+    }
+
+    @Override
+    public void gameEnd() {
+        System.out.println("게임을 종료합니다");
+        System.exit(0);
+    }
+
+    @Override
+    public String order(int players) {
+        System.out.println("주사위를 굴려 플레이어 순서를 정합니다");
+        orderNum = new ArrayList<>();
+
+//        for (int i = 0; i < players; i++) {
+//            playerOrder.get(i).order((int) (Math.random() * Integer.MAX_VALUE));
+//        }
+
+        return "player" + (orderNum.indexOf(Collections.max(orderNum))+ 1) + "부터 시작합니다!";
+    }
+
+    @Override
+    public void rank() {
+
+    }
+
+    public static void main(String[] args) {
+        BoardServiceImpl board = new BoardServiceImpl();
+        board.gmaeStart();
+        System.out.println(board.order(board.getPlayers()));
+    }
+}

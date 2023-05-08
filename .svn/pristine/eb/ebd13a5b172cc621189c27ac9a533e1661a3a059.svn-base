@@ -1,0 +1,33 @@
+//package testkts;
+
+//
+//import java.util.ArrayList;
+//
+//public class Cardd {
+//	
+//
+//	String suit;
+//	String number;
+//	public Cardd(String suit,String number ) {
+//		this.suit = suit;
+//		this.number = number;
+//	
+//	}
+//	@Override
+//	public String toString() {
+//		// TODO Auto-generated method stub
+//		return "(" + suit + ""+number+")";
+//	}
+//	public class Ddeck{
+//		public static void main(String[] args) {
+//		ArrayList<Card> deck = new ArrayList<>();
+//		   deck.add(new Card("WHITE", "1"));
+//		    deck.add(new Card("WHITE", "1"));
+//		    deck.add(new Card("BLACK", "4"));
+//		    deck.add(new Card("WHITE", "3"));
+//		    deck.add(new Card("WHITE", "2"));
+//		    System.out.println(deck);
+//		}
+//	}
+//	
+//}

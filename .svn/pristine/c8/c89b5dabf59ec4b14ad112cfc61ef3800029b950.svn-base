@@ -1,0 +1,57 @@
+package marble;
+
+public class Player implements Comparable<Player>{
+	// 플레이어 클래스 만들기
+	// 현재 위치 변수 필요
+	// 메서드 롤 
+	// 주사위를 2개 굴려야함
+	// 1번 뭐 2번 뭐 그리고 더해야함
+	String name; // 이름
+	/*
+	 * 지도상의 플레이어의 현재 위치, 값의 범위는 0 ~ 맵길이 - 1
+	 */
+	int idx; // 위치
+	int order;
+
+		
+	public Player(String name) {
+		super();
+		this.name = name;
+	}
+	/**
+	 * 호출했을 때 무슨 기능을 하는지
+	 * 
+	 * 
+	 * @return 주사위를 굴린 후 두 주사위의 합계
+	 */
+	
+	int roll() {
+		int d1 = (int)(Math.random()*6)+1;
+		int d2 = (int)(Math.random()*6)+1;
+		System.out.println(d1);
+		System.out.println(d2);
+		System.out.println(d1 + d2);
+		return d1 + d2;
+		
+	}
+	public static void main(String[] args) {
+//		Player player = new Player();
+//		player.roll();
+//		player.roll();
+		
+	}
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", idx=" + idx + ", order=" + order + "]";
+	}
+	@Override
+	public int compareTo(Player o) {
+		// TODO Auto-generated method stub
+		return o.order- order;
+	}
+	
+	
+	
+	
+}
+
